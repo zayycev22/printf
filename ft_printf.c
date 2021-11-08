@@ -6,60 +6,58 @@
 /*   By: larobbie <larobbie@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/31 03:50:57 by larobbie          #+#    #+#             */
-/*   Updated: 2021/10/31 04:03:27 by larobbie         ###   ########.fr       */
+/*   Updated: 2021/11/09 00:22:14 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft/libft.h"
-#include "includes/printf.h"
+#include "includes/ft_printf.h"
 
-void	printnb(char desc, va_list ap)
+int	parse(char arg, va_list ap)
 {
-	if (desc == 'd' || desc == 'i')
-		ft_putnbr_fd(va_arg(ap, int), 1);
-	else if (desc == 'u')
-		ft_putnbr_fd(va_arg(ap, unsigned int), 1);
+	int		sum;
+
+	sum = 0;
+	if (arg == 'd' || arg == 'i' || arg == 'u')
+		sum += printnb(arg, ap);
+	else if (arg == 'c')
+		sum += ft_char(va_arg(ap, int));
+	else if (arg == 's')
+		sum += ft_string(va_arg(ap, char *));
+	else if (arg == 'x' || arg == 'X')
+		sum += puthex(arg, (unsigned int)va_arg(ap, unsigned int));
+	else if (arg == 'p')
+		sum += ft_pointer((unsigned long)va_arg(ap, unsigned long));
+	else if (arg == '%')
+	{
+		ft_putchar_fd('%', 1);
+		sum++;
+	}
+	return (sum);
 }
 
-void	puthex(char desc, int num)
-{
-	char	*all;
-
-	if (desc == 'x')
-		all = ft_strdup("0123456789abcdef");
-	else
-		all = ft_strdup("0123456789ABCDEF");
-	ft_putnbr_fd_base(num, 1, all, 16);
-	free(all);
-}
-
-void	ft_printf(const char *arg, ...)
+int	ft_printf(const char *arg, ...)
 {
 	va_list	ap;
 	size_t	i;
-	int		flag;
+	int		count;
 
 	va_start(ap, arg);
 	i = 0;
-	flag = 0;
+	count = 0;
 	while (arg[i])
 	{
 		if (arg[i] == '%' && i != ft_strlen(arg) - 1)
 		{
-			if (arg[i + 1] == 'd' || arg[i + 1] == 'i' || arg[i + 1] == 'u')
-				printnb(arg[i + 1], ap);
-			else if (arg[i + 1] == 'c')
-				ft_putchar_fd(va_arg(ap, int), 1);
-			else if (arg[i + 1] == 's')
-				ft_putstr_fd(va_arg(ap, char *), 1);
-			else if (arg[i + 1] == 'x' || arg[i + 1] == 'X')
-				puthex(arg[i + 1], va_arg(ap, int));
-			else if (arg[i + 1] == '%')
-				ft_putchar_fd('%', 1);
+			count += parse(arg[i + 1], ap);
 			i++;
 		}
 		else
+		{
 			ft_putchar_fd(arg[i], 1);
+			count++;
+		}
 		i++;
 	}
+	return (count);
 }

@@ -6,12 +6,12 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 15:29:05 by                   #+#    #+#             */
-/*   Updated: 2021/10/17 15:30:40 by                  ###   ########.fr       */
+/*   Updated: 2021/11/08 06:08:58 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-static int	count_n(int n)
+static int	count_n(long n)
 {
 	int	cnt;
 
@@ -46,7 +46,7 @@ static void	reverse(char *a)
 	}
 }
 
-static int	checks(int *n, char *s, int *i)
+static int	checks(long *n, char *s, int *i)
 {
 	int		check;
 	int		check2;
@@ -72,7 +72,7 @@ static int	checks(int *n, char *s, int *i)
 	return (check + check2);
 }
 
-static char	*get_full(int *tmp, char *s, int *i)
+static char	*get_full(long *tmp, char *s, int *i)
 {
 	int	j;
 
@@ -87,12 +87,12 @@ static char	*get_full(int *tmp, char *s, int *i)
 	return (s);
 }
 
-char	*ft_itoa(int n)
+char	*ft_itoa(long n)
 {
-	char	*s;
-	int		i;
-	int		check;
-	int		tmp;
+	char		*s;
+	int			i;
+	int			check;
+	long		tmp;
 
 	tmp = n;
 	s = (char *) malloc(sizeof(char) * count_n(n) + 1);

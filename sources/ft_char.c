@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_char.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/09 00:59:21 by                   #+#    #+#             */
-/*   Updated: 2021/11/09 01:50:13 by                  ###   ########.fr       */
+/*   Created: 2021/11/08 05:34:01 by                   #+#    #+#             */
+/*   Updated: 2021/11/08 05:34:01 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
-#include"libft/libft.h"
-#include "includes/ft_printf.h"
-#include "limits.h"
+//
+// Created by zayycev22 on 08.11.2021.
+//
+#include "../libft/libft.h"
 
-int	main(void)
+int	ft_char(char c)
 {
-	int	c;
-	int	d;
+	int	sum;
 
-	c = ft_printf("%5c");
+	ft_putchar_fd(c, 1);
+	sum = 1;
+	return (sum);
 }

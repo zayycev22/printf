@@ -11,17 +11,23 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+int	ft_putstr_fd(char *s, int fd)
 {
 	size_t	i;
 
 	i = 0;
 	if (s)
 	{
-		while (i < ft_strlen(s))
+		while (s[i])
 		{
 			ft_putchar_fd(s[i], fd);
 			i++;
 		}
 	}
+	if (!s)
+	{
+		ft_putstr_fd("(null)", 1);
+		return ((int) ft_strlen("(null)"));
+	}
+	return ((int)i);
 }
