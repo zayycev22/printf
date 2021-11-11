@@ -9,8 +9,8 @@
 /*   Updated: 2021/11/08 06:05:40 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../libft/libft.h"
-#include "../includes/ft_printf.h"
+#include "libft/libft.h"
+#include "includes/ft_printf.h"
 
 int	printnb(char desc, va_list ap)
 {
