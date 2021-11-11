@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_puthexbase.c                                    :+:      :+:    :+:   */
+/*   ft_pointer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larobbie <larobbie@student.21-school.ru    +#+  +:+       +#+        */
+/*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/31 03:51:15 by larobbie          #+#    #+#             */
-/*   Updated: 2021/11/08 20:50:55 by                  ###   ########.fr       */
+/*   Created: 2021/11/09 00:36:46 by                   #+#    #+#             */
+/*   Updated: 2021/11/09 18:42:50 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "../libft/libft.h"
-#include "../printf.h"
+#include "libft/libft.h"
+#include "includes/ft_printf.h"
 
 static void	print_hex(char *s)
 {
@@ -39,7 +38,7 @@ static	char	*new_s(char *old, char c)
 	return (new);
 }
 
-static void	ft_putnbr_fd_six(unsigned int n, char *base, int *cnt)
+static void	get_p(unsigned long n, char *base, int *cnt)
 {
 	int		tmp;
 	char	*t;
@@ -61,17 +60,20 @@ static void	ft_putnbr_fd_six(unsigned int n, char *base, int *cnt)
 	free(t);
 }
 
-int	puthex(char desc, unsigned int num)
+int	ft_pointer(unsigned long num)
 {
-	char	*all;
 	int		cnt;
+	char	*all;
 
 	cnt = 0;
-	if (desc == 'x' || desc == 'p')
-		all = ft_strdup("0123456789abcdef");
+	all = ft_strdup("0123456789abcdef");
+	if (num == 0)
+		cnt += ft_putstr_fd("0x0", 1);
 	else
-		all = ft_strdup("0123456789ABCDEF");
-	ft_putnbr_fd_six(num, all, &cnt);
+	{
+		cnt += ft_putstr_fd("0x", 1);
+		get_p(num, all, &cnt);
+	}
 	free(all);
 	return (cnt);
 }
